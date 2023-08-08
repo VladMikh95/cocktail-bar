@@ -6,4 +6,9 @@
     </style>
 
     <style name="Theme.Cocktailbar" parent="Base.Theme.Cocktailbar" />
+    <style name="AppTheme.Alert" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="dialogCornerRadius">54dp</item>
+        <item name="android:layout_width">329dp</item>
+        <item name="android:layout_height">328dp</item>
+    </style>
 </resources>

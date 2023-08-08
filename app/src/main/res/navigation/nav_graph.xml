@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/myCocktailsFragment">
+
+    <fragment
+        android:id="@+id/myCocktailsFragment"
+        android:name="ml.vladmikh.projects.cocktail_bar.ui.my_cocktails.MyCocktailsFragment"
+        android:label="fragment_my_cocktails"
+        tools:layout="@layout/fragment_my_cocktails" >
+        <action
+            android:id="@+id/action_myCocktailsFragment_to_addCocktailFragment"
+            app:destination="@id/addCocktailFragment" />
+        <action
+            android:id="@+id/action_myCocktailsFragment_to_cocktailDetailFragment"
+            app:destination="@id/cocktailDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addCocktailFragment"
+        android:name="ml.vladmikh.projects.cocktail_bar.ui.add_cocktail.AddCocktailFragment"
+        android:label="fragment_add_cocktail"
+        tools:layout="@layout/fragment_add_cocktail" >
+        <action
+            android:id="@+id/action_addCocktailFragment_to_myCocktailsFragment"
+            app:destination="@id/myCocktailsFragment" />
+        <action
+            android:id="@+id/action_addCocktailFragment_to_ingredientDialogFragment"
+            app:destination="@id/ingredientDialogFragment" />
+        <argument
+            android:name="ingredient"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/ingredientDialogFragment"
+        android:name="ml.vladmikh.projects.cocktail_bar.ui.ingredient_dialog.IngredientDialogFragment"
+        android:label="fragment_ingredient_dialog"
+        tools:layout="@layout/fragment_ingredient_dialog" >
+        <action
+            android:id="@+id/action_ingredientDialogFragment_to_addCocktailFragment"
+            app:destination="@id/addCocktailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/cocktailDetailFragment"
+        android:name="ml.vladmikh.projects.cocktail_bar.ui.cocktail_detail.CocktailDetailFragment"
+        android:label="fragment_cocktail_detail"
+        tools:layout="@layout/fragment_cocktail_detail" >
+        <argument
+            android:name="idCocktail"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_cocktailDetailFragment_to_myCocktailsFragment"
+            app:destination="@id/myCocktailsFragment" />
+    </fragment>
+</navigation>

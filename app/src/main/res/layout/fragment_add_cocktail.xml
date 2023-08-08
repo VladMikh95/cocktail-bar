@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context=".ui.add_cocktail.AddCocktailFragment">
+    
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageButton
+                android:id="@+id/imageButtonAddImage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/add_image_coctail_drawable"
+                android:src="@drawable/photo_camera_drawable"
+                android:layout_marginTop="40dp"
+                android:layout_marginStart="72dp"
+                android:layout_marginEnd="72dp"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayoutTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                app:boxCornerRadiusBottomEnd="56dp"
+                app:boxCornerRadiusTopEnd="56dp"
+                app:boxCornerRadiusBottomStart="56dp"
+                app:boxCornerRadiusTopStart="56dp"
+                app:boxStrokeColor="@color/gray"
+                app:helperText="@string/optional_field">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/add_cocktail_title"
+                    app:errorEnabled="true"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayoutDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="16dp"
+                app:boxCornerRadiusBottomEnd="34dp"
+                app:boxCornerRadiusTopEnd="34dp"
+                app:boxCornerRadiusBottomStart="34dp"
+                app:boxCornerRadiusTopStart="34dp"
+                app:boxStrokeColor="@color/gray"
+                app:helperText="@string/optional_field">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="154dp"
+                    android:gravity="top"
+                    android:hint="@string/add_cocktail_description"
+                    app:errorEnabled="true"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:text="Ingredients"/>
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chipGroup"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"/>
+
+            <ImageButton
+                android:id="@+id/addIngredient"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:background="@drawable/round_corner_button"
+                android:src="@drawable/button_add_cocktail_drawable"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="16dp"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayoutRecipe"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="16dp"
+                app:boxCornerRadiusBottomEnd="34dp"
+                app:boxCornerRadiusTopEnd="34dp"
+                app:boxCornerRadiusBottomStart="34dp"
+                app:boxCornerRadiusTopStart="34dp"
+                app:boxStrokeColor="@color/gray"
+                app:helperText="@string/optional_field">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextRecipe"
+                    android:layout_width="match_parent"
+                    android:gravity="top"
+                    android:layout_height="154dp"
+                    android:hint="@string/add_cocktail_recipe"
+                    app:errorEnabled="true"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/button_save"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="24sp"
+                android:background="@drawable/button_save_drawable"
+                android:text="@string/button_save"
+                android:textColor="@color/white"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="16dp"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/button_cancel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="24sp"
+                android:background="@drawable/button_cancel_drawable"
+                android:text="@string/button_cancel"
+                android:textColor="@color/blue"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="24dp"/>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </ScrollView>
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>

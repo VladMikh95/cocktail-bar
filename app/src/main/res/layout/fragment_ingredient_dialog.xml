@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="24dp">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:textSize="32dp"
+        android:text="@string/add_ingredient"
+        android:layout_marginStart="39dp"
+        android:layout_marginEnd="39dp"
+        android:layout_height="wrap_content"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayoutIngredient"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        app:boxCornerRadiusBottomEnd="34dp"
+        app:boxCornerRadiusTopEnd="34dp"
+        app:boxCornerRadiusBottomStart="34dp"
+        app:boxCornerRadiusTopStart="34dp"
+        app:boxStrokeColor="@color/gray"
+        app:helperText="@string/add_title">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextIngredient"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Ingredient"
+            app:errorEnabled="true"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button_add"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="24sp"
+        android:layout_marginTop="24dp"
+        android:text="@string/button_add"
+        android:textColor="@color/white"
+        android:background="@drawable/button_save_drawable"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button_cancel"
+        android:text="@string/button_cancel"
+        android:textSize="24sp"
+        android:textColor="@color/blue"
+        android:background="@drawable/button_cancel_drawable"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="24dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>
