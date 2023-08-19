@@ -36,11 +36,7 @@ class AddCocktailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         binding.addIngredient.setOnClickListener{
-            showIngredientDialog {
-                if (it != null) {
-                    //viewModel.addIngredient(it)
-                }
-            }
+            showIngredientDialog()
         }
 
         binding.buttonSave.setOnClickListener{
@@ -99,7 +95,7 @@ class AddCocktailFragment : Fragment() {
     }
 
     //Метод вызывает диалог добавления ингредиентов
-    private fun showIngredientDialog(ingredient: (String?) -> Unit) {
+    private fun showIngredientDialog() {
 
         val builder = AlertDialog.Builder(requireContext()).create()
         val dialogBinding: FragmentIngredientDialogBinding = FragmentIngredientDialogBinding.inflate(layoutInflater)
@@ -124,7 +120,6 @@ class AddCocktailFragment : Fragment() {
 
             }
             dialogBinding.buttonCancel.setOnClickListener {
-                ingredient(null)
                 builder.dismiss()
             }
             show()
