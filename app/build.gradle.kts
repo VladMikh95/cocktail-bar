@@ -62,10 +62,6 @@ dependencies {
     implementation("androidx.cardview:cardview:1.0.0")
     //RecyclerView
     implementation("androidx.recyclerview:recyclerview:1.3.0")
-    //retrofit
-    implementation("com.squareup.retrofit2:retrofit:2.9.0")
-    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
-    implementation("com.google.code.gson:gson:2.9.0")
     // ViewModel
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1")
     // LiveData
@@ -77,6 +73,8 @@ dependencies {
     kapt("androidx.room:room-compiler:$room_version")
     // optional - Kotlin Extensions and Coroutines support for Room
     implementation("androidx.room:room-ktx:$room_version")
+    //Gson
+    implementation("com.google.code.gson:gson:2.9.0")
 
 }
 // Allow references to generated code

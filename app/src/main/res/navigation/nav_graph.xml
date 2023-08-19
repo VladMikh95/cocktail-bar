@@ -32,15 +32,15 @@
             android:name="ingredient"
             app:argType="string" />
     </fragment>
-    <fragment
+    <dialog
         android:id="@+id/ingredientDialogFragment"
-        android:name="ml.vladmikh.projects.cocktail_bar.ui.ingredient_dialog.IngredientDialogFragment"
+        android:name="ml.vladmikh.projects.cocktail_bar.ui.add_cocktail.IngredientDialogFragment"
         android:label="fragment_ingredient_dialog"
         tools:layout="@layout/fragment_ingredient_dialog" >
         <action
             android:id="@+id/action_ingredientDialogFragment_to_addCocktailFragment"
             app:destination="@id/addCocktailFragment" />
-    </fragment>
+    </dialog>
     <fragment
         android:id="@+id/cocktailDetailFragment"
         android:name="ml.vladmikh.projects.cocktail_bar.ui.cocktail_detail.CocktailDetailFragment"

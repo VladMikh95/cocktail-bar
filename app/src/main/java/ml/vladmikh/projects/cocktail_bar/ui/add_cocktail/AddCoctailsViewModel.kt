@@ -1,5 +1,6 @@
 package ml.vladmikh.projects.cocktail_bar.ui.add_cocktail
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -16,20 +17,31 @@ class AddCoctailsViewModel @Inject constructor(
     private val repository: CocktailRepository
 ): ViewModel() {
 
-    private var _cocktail = MutableLiveData<CocktailLocalDataSource>()
-    val coctail: LiveData<CocktailLocalDataSource> get() = _cocktail
+    private var _listIngredients = MutableLiveData<ArrayList<String>>()
+    val listIngredients: LiveData<ArrayList<String>> get() = _listIngredients
 
-
-    private var _ingredients = MutableLiveData<ArrayList<String>>()
-    val ingredients: LiveData<ArrayList<String>> get() = _ingredients
-
-    fun addIngredient(ingredient: String) {
-        _ingredients.value?.add(ingredient)
-    }
     fun insertCocktail(cocktail: CocktailLocalDataSource) {
         viewModelScope.launch {
             repository.insert(cocktail)
         }
+    }
+
+    fun addIngredient(ingredient: String) {
+        val oldListIngredient = _listIngredients.value
+        val newListIngredient = ArrayList<String>()
+
+        if (oldListIngredient != null) {
+
+            for(ingr in oldListIngredient) {
+                newListIngredient.add(ingr)
+            }
+
+        }
+        newListIngredient.add(ingredient)
+
+        Log.i("abc1", newListIngredient.toString())
+
+        _listIngredients.value = newListIngredient
     }
 
 

@@ -1,32 +1,33 @@
 package ml.vladmikh.projects.cocktail_bar.ui.add_cocktail
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.os.bundleOf
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import com.google.android.material.chip.Chip
 import dagger.hilt.android.AndroidEntryPoint
 import ml.vladmikh.projects.cocktail_bar.R
 import ml.vladmikh.projects.cocktail_bar.data.local.entities.CocktailLocalDataSource
 import ml.vladmikh.projects.cocktail_bar.databinding.FragmentAddCocktailBinding
-import ml.vladmikh.projects.cocktail_bar.databinding.FragmentMyCocktailsBinding
-import ml.vladmikh.projects.cocktail_bar.ui.ingredient_dialog.IngredientDialogFragmentDirections
+import ml.vladmikh.projects.cocktail_bar.databinding.FragmentIngredientDialogBinding
+
 
 @AndroidEntryPoint
 class AddCocktailFragment : Fragment() {
 
     private val viewModel by viewModels<AddCoctailsViewModel>()
     lateinit var binding: FragmentAddCocktailBinding
-    private val args: AddCocktailFragmentArgs by navArgs()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentAddCocktailBinding.inflate(inflater, container, false)
 
         return binding.root
@@ -35,7 +36,11 @@ class AddCocktailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         binding.addIngredient.setOnClickListener{
-            findNavController().navigate(R.id.action_addCocktailFragment_to_ingredientDialogFragment)
+            showIngredientDialog {
+                if (it != null) {
+                    //viewModel.addIngredient(it)
+                }
+            }
         }
 
         binding.buttonSave.setOnClickListener{
@@ -63,22 +68,67 @@ class AddCocktailFragment : Fragment() {
             findNavController().navigate(R.id.action_addCocktailFragment_to_myCocktailsFragment)
         }
 
-        //if (args.ingredient != "") {
-         //  viewModel.addIngredient(args.ingredient)
-        //}
+        viewModel.listIngredients.observe(viewLifecycleOwner) { ingredients ->
 
-        viewModel.ingredients.observe(viewLifecycleOwner) { ingredients ->
-            for (index in ingredients) {
-                val chip = Chip(binding.chipGroup.context)
-                chip.text= index
-                chip.isClickable = true
-                chip.isCheckable = true
-                binding.chipGroup.addView(chip)
+            binding.chipGroup.removeAllViews()
+            if (ingredients.isNotEmpty()) {
+
+                for(ingredient in ingredients) {
+                    val chip = Chip(context).apply {
+                        text = ingredient.trim()
+                    }
+                    chip.isCloseIconVisible = true
+                    chip.setOnCloseIconClickListener {
+                        binding.chipGroup.removeView(chip)
+                    }
+                    binding.chipGroup.addView(chip)
+                }
             }
         }
+    }
 
+    private fun addIngredient(ingredient: String) {
+        val chip = Chip(context).apply {
+            text = ingredient
+        }
+        chip.isCloseIconVisible = true
+        chip.setOnCloseIconClickListener {
+            binding.chipGroup.removeView(chip)
+        }
+        binding.chipGroup.addView(chip)
+    }
 
+    //Метод вызывает диалог добавления ингредиентов
+    private fun showIngredientDialog(ingredient: (String?) -> Unit) {
 
+        val builder = AlertDialog.Builder(requireContext()).create()
+        val dialogBinding: FragmentIngredientDialogBinding = FragmentIngredientDialogBinding.inflate(layoutInflater)
+
+        with(builder) {
+            setView(dialogBinding.root)
+            setCancelable(false)
+            dialogBinding.editTextIngredient.addTextChangedListener(object : TextWatcher {
+                override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+                override fun afterTextChanged(s: Editable?) {
+                    if (s?.trim()?.isNotEmpty() == true) dialogBinding.textInputLayoutIngredient.error = null
+                    else dialogBinding.textInputLayoutIngredient.error = "Add title"
+                }
+            })
+
+            dialogBinding.buttonAdd.setOnClickListener {
+                if (dialogBinding.editTextIngredient.text?.trim()?.isNotEmpty() == true) {
+                    viewModel.addIngredient((dialogBinding.editTextIngredient.text.toString()))
+                    builder.dismiss()
+                }
+
+            }
+            dialogBinding.buttonCancel.setOnClickListener {
+                ingredient(null)
+                builder.dismiss()
+            }
+            show()
+        }
     }
 
 }

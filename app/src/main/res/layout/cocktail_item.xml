@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="160dp"
-    android:layout_height="160dp"
-    app:cardCornerRadius="54dp"
-    android:layout_margin="4dp"
+    android:layout_width="@dimen/large_100"
+    android:layout_height="@dimen/large_100"
+    app:cardCornerRadius="@dimen/normal_325"
+    android:layout_margin="@dimen/normal_25"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -23,10 +23,10 @@
         <TextView
             android:id="@+id/textViewCocktail"
             android:textColor="@color/white"
-            android:textSize="18dp"
+            android:textSize="@dimen/text_18"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="102dp"
+            android:layout_marginTop="@dimen/normal_625"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

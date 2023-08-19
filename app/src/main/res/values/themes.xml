@@ -3,12 +3,28 @@
     <style name="Base.Theme.Cocktailbar" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <!-- Alert dialog style -->
+        <item name="alertDialogTheme">@style/DialogFragmentTheme</item>
     </style>
 
     <style name="Theme.Cocktailbar" parent="Base.Theme.Cocktailbar" />
-    <style name="AppTheme.Alert" parent="Theme.AppCompat.Light.Dialog.Alert">
+
+    <style name="DialogFragmentTheme" parent="Theme.Material3.Light.Dialog">
+        <item name="android:alertDialogStyle">@style/DialogFragmentStyle</item>
         <item name="dialogCornerRadius">54dp</item>
-        <item name="android:layout_width">329dp</item>
-        <item name="android:layout_height">328dp</item>
+        <item name="android:windowSoftInputMode">adjustResize</item>
+        <item name="android:windowMinWidthMajor">80%</item>
+        <item name="android:windowMinWidthMinor">80%</item>
+        <!-- Used for the background -->
+        <item name="android:windowBackground">@drawable/dialog_background_drawable</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="windowActionBar">false</item>
+    </style>
+
+    <style name="DialogFragmentStyle" parent="Theme.MaterialComponents.Light.Dialog.Alert">
+
     </style>
 </resources>

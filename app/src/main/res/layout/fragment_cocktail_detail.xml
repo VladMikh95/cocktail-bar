@@ -4,47 +4,47 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp"
+    android:padding="@dimen/normal_100"
     tools:context=".ui.cocktail_detail.CocktailDetailFragment">
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"/>
+        android:layout_marginTop="@dimen/normal_150"/>
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"/>
+        android:layout_marginTop="@dimen/normal_150"/>
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/recipe"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"/>
+        android:layout_marginTop="@dimen/normal_150"/>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/buttonEdit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="24sp"
+        android:textSize="@dimen/text_24"
         android:background="@drawable/button_save_drawable"
         android:text="@string/button_edit"
         android:textColor="@color/white"
-        android:layout_marginTop="24dp" />
+        android:layout_marginTop="@dimen/normal_150" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/buttonDelete"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="24sp"
+        android:textSize="@dimen/text_24"
         android:background="@drawable/button_cancel_drawable"
         android:text="@string/button_delete"
         android:textColor="@color/blue"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="24dp"/>
+        android:layout_marginTop="@dimen/normal_50"
+        android:layout_marginBottom="@dimen/normal_150"/>
 
 
 
