@@ -17,6 +17,8 @@ class AddCoctailsViewModel @Inject constructor(
     private val repository: CocktailRepository
 ): ViewModel() {
 
+    val editTextTitle = MutableLiveData<String>()
+
     private var _listIngredients = MutableLiveData<ArrayList<String>>()
     val listIngredients: LiveData<ArrayList<String>> get() = _listIngredients
 

@@ -18,4 +18,5 @@
     <string name="add_your_first_cocktail_here">Add your first cocktail here</string>
     <string name="button_edit">Edit</string>
     <string name="button_delete">Delete</string>
+    <string name="permission_denited">Permission denited</string>
 </resources>
