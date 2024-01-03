@@ -8,7 +8,6 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -17,15 +16,12 @@ import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
-import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.chip.Chip
-import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import ml.vladmikh.projects.cocktail_bar.R
-import ml.vladmikh.projects.cocktail_bar.data.local.entities.CocktailLocalDataSource
 import ml.vladmikh.projects.cocktail_bar.databinding.FragmentAddCocktailBinding
 import ml.vladmikh.projects.cocktail_bar.databinding.FragmentIngredientDialogBinding
 import ml.vladmikh.projects.cocktail_bar.util.bindTextTwoWay
@@ -75,6 +71,8 @@ class AddCocktailFragment : Fragment() {
                 binding.textInputLayoutRecipe.error = "@string/add_ingredient"
             } else {
 
+                viewModel.insertCocktail()
+
                 findNavController().navigate(R.id.action_addCocktailFragment_to_myCocktailsFragment)
             }
         }
@@ -82,11 +80,14 @@ class AddCocktailFragment : Fragment() {
         //При нажатии на imageButtonAddImage реализована возможность добавлять картинку
         binding.imageButtonAddImage.setOnClickListener {
             onCheckMediaPermission()
-            Log.i("abc", "123")
         }
 
         binding.buttonCancel.setOnClickListener {
             findNavController().navigateUp()
+        }
+
+        viewModel.imageCocktailUri.observe(viewLifecycleOwner) {uri ->
+            binding.cardViewBackgroundImage.setImageURI(uri)
         }
 
         viewModel.listIngredients.observe(viewLifecycleOwner) { ingredients ->
@@ -140,13 +141,6 @@ class AddCocktailFragment : Fragment() {
         }
     }
 
-    /*
-    private fun selectImage() {
-        activity?.let {
-            if (ContextCompat.checkSelfPermission(it.applicationContext, android.Manifest.permission.READ_EXTERNAL_STORAGE) !=
-                PackageManager.PERMISSION_GRANTED)
-        }
-    }*/
     private val changeImage =
         registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()
@@ -154,7 +148,7 @@ class AddCocktailFragment : Fragment() {
             if (it.resultCode == Activity.RESULT_OK) {
                 val data = it.data
                 val imgUri = data?.data
-                binding.imageButtonAddImage.setImageURI(imgUri)
+                imgUri?.let { it1 -> viewModel.addImageCocktailUri(it1) }
             }
         }
 

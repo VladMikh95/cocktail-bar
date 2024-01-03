@@ -1,5 +1,6 @@
 package ml.vladmikh.projects.cocktail_bar.data.local.entities
 
+import android.net.Uri
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -15,5 +16,7 @@ data class CocktailLocalDataSource (
     val ingredients: List<String>,
     val recipe: String
 
-)
+) {
+
+}
 
