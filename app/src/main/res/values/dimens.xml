@@ -19,4 +19,8 @@
     <dimen name="text_36">36sp</dimen>
     <dimen name="text_16">16sp</dimen>
     <dimen name="normal_825">132dp</dimen>
+    <dimen name="_320dp">320dp</dimen>
+    <dimen name="_266dp">266dp</dimen>
+    <dimen name="_32sp">32sp</dimen>
+    <dimen name="_16sp">16sp</dimen>
 </resources>
