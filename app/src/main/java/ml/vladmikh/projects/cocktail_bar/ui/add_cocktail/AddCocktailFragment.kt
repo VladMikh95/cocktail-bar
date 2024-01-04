@@ -55,7 +55,8 @@ class AddCocktailFragment : Fragment() {
         }
 
         binding.editTextTitle.bindTextTwoWay(viewModel.editTextTitle, viewLifecycleOwner)
-
+        binding.editTextDescription.bindTextTwoWay(viewModel.editTextDescription, viewLifecycleOwner)
+        binding.editTextRecipe.bindTextTwoWay(viewModel.editTextRecipe, viewLifecycleOwner)
         binding.buttonSave.setOnClickListener{
 
             if (viewModel.editTextTitle.value == null) {

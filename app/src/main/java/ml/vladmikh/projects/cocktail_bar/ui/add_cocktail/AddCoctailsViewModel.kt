@@ -33,13 +33,14 @@ class AddCoctailsViewModel @Inject constructor(
     fun insertCocktail() {
         viewModelScope.launch {
             val cocktail = _listIngredients.value?.let {
+                Log.i("abc", editTextDescription.value.toString())
                 CocktailLocalDataSource(
                     0,
                     editTextTitle.value.toString(),
-                    _imageCocktailUri.toString(),
-                    editTextDescription.toString(),
+                    _imageCocktailUri.value.toString(),
+                    editTextDescription.value.toString(),
                     it,
-                    editTextRecipe.toString())
+                    editTextRecipe.value.toString())
             }
             cocktail?.let { repository.insert(it) }
         }

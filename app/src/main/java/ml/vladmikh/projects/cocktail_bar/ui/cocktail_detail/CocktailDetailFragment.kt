@@ -1,6 +1,8 @@
 package ml.vladmikh.projects.cocktail_bar.ui.cocktail_detail
 
+import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,10 +13,6 @@ import androidx.navigation.fragment.navArgs
 import dagger.hilt.android.AndroidEntryPoint
 import ml.vladmikh.projects.cocktail_bar.R
 import ml.vladmikh.projects.cocktail_bar.databinding.FragmentCocktailDetailBinding
-import ml.vladmikh.projects.cocktail_bar.databinding.FragmentMyCocktailsBinding
-import ml.vladmikh.projects.cocktail_bar.ui.add_cocktail.AddCocktailFragmentArgs
-import ml.vladmikh.projects.cocktail_bar.ui.my_cocktails.CocktailsAdapter
-import ml.vladmikh.projects.cocktail_bar.ui.my_cocktails.MyCocktailsViewModel
 
 @AndroidEntryPoint
 class CocktailDetailFragment : Fragment() {
@@ -36,11 +34,19 @@ class CocktailDetailFragment : Fragment() {
 
         viewModel.getCocktail(args.idCocktail)
         viewModel.cocktail.observe(this.viewLifecycleOwner) { cocktail ->
+
             binding.title.text = cocktail.name
             binding.description.text = cocktail.description
             binding.recipe.text =cocktail.recipe
+            val adapter = IngredientAdapter(cocktail.ingredients.size)
+            binding.recyclerViewIngredients.adapter = adapter
+
+            adapter.submitList(cocktail.ingredients)
 
 
+
+            val uri = Uri.parse(cocktail.imagePath)
+            binding.imageCocktail.setImageURI(uri)
         }
 
         binding.buttonDelete.setOnClickListener{

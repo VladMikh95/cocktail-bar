@@ -17,7 +17,7 @@ class CocktailDetailViewModel @Inject constructor(
     private val repository: CocktailRepository
 ): ViewModel() {
 
-    private val _cocktail = MutableLiveData<CocktailLocalDataSource>()
+
     lateinit var cocktail: LiveData<CocktailLocalDataSource>
 
     fun getCocktail (id: Int) {
