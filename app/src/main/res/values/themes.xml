@@ -9,6 +9,7 @@
 
     <style name="Theme.Cocktailbar" parent="Theme.Material3.Light.NoActionBar" >
         <item name="android:fontFamily">@font/didact_gothic</item>
+        <item name="alertDialogTheme">@style/DialogFragmentTheme</item>
     </style>
 
     <style name="DialogFragmentTheme" parent="Theme.Material3.Light.Dialog">
