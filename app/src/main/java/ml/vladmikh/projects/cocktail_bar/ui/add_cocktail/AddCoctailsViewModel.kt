@@ -1,6 +1,7 @@
 package ml.vladmikh.projects.cocktail_bar.ui.add_cocktail
 
 import android.net.Uri
+import android.provider.DocumentsContract
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -18,8 +19,8 @@ class AddCoctailsViewModel @Inject constructor(
     private val repository: CocktailRepository
 ): ViewModel() {
 
-    private var _imageCocktailUri = MutableLiveData<Uri>()
-    val imageCocktailUri: LiveData<Uri> get() = _imageCocktailUri
+    private var _imagePath = MutableLiveData<String>()
+    val imagePath: LiveData<String> get() = _imagePath
 
     val editTextTitle = MutableLiveData<String>()
 
@@ -34,13 +35,17 @@ class AddCoctailsViewModel @Inject constructor(
         viewModelScope.launch {
             val cocktail = _listIngredients.value?.let {
                 Log.i("abc", editTextDescription.value.toString())
-                CocktailLocalDataSource(
-                    0,
-                    editTextTitle.value.toString(),
-                    _imageCocktailUri.value.toString(),
-                    editTextDescription.value.toString(),
-                    it,
-                    editTextRecipe.value.toString())
+
+
+                _imagePath.value?.let { it1 ->
+                    CocktailLocalDataSource(
+                        0,
+                        editTextTitle.value.toString(),
+                        it1,
+                        editTextDescription.value.toString(),
+                        it,
+                        editTextRecipe.value.toString())
+                }
             }
             cocktail?.let { repository.insert(it) }
         }
@@ -64,9 +69,12 @@ class AddCoctailsViewModel @Inject constructor(
         _listIngredients.value = newListIngredient
     }
 
-    fun addImageCocktailUri(imageUri: Uri) {
-        _imageCocktailUri.value = imageUri
+    fun addImageCocktailUri(path: String) {
+
+        _imagePath.value = path
     }
+
+
 
 
 }

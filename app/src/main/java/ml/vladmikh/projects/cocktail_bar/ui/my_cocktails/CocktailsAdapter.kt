@@ -1,6 +1,7 @@
 package ml.vladmikh.projects.cocktail_bar.ui.my_cocktails
 
 import android.net.Uri
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.findNavController
@@ -49,7 +50,10 @@ class CocktailsAdapter() : ListAdapter<CocktailLocalDataSource, CocktailsAdapter
         fun bind(cocktail: CocktailLocalDataSource) {
 
             binding.textViewCocktail.text = cocktail.name
-            binding.imageViewCocktail.setImageURI(Uri.parse(cocktail.imagePath))
+            Log.i("abc", cocktail.imagePath)
+            if (cocktail.imagePath != null) {
+                binding.imageViewCocktail.setImageURI(Uri.parse(cocktail.imagePath))
+            }
         }
     }
 }
